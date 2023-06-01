@@ -11,7 +11,7 @@ import {
 // import { Close } from "@material-ui/icons";
 import CloseIcon from "@mui/icons-material/Close";
 
-const ConfirmPostDelete = ({ handlePostDelete, setIsPostDelete, postId }) => {
+function ConfirmPostDelete({ handlePostDelete, setIsPostDelete, postId }) {
   return (
     <Dialog open={true} maxWidth="sm" fullWidth>
       <DialogTitle>Confirm to delete</DialogTitle>
@@ -21,7 +21,7 @@ const ConfirmPostDelete = ({ handlePostDelete, setIsPostDelete, postId }) => {
         </IconButton>
       </Box>
       <DialogContent>
-        <Typography>{`Are you sure yout want to delete the post?`}</Typography>
+        <Typography>{`Are you sure you want to delete the post?`}</Typography>
       </DialogContent>
       <DialogActions>
         <Button
@@ -41,6 +41,6 @@ const ConfirmPostDelete = ({ handlePostDelete, setIsPostDelete, postId }) => {
       </DialogActions>
     </Dialog>
   );
-};
+}
 
 export default ConfirmPostDelete;

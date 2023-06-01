@@ -21,11 +21,11 @@ import {
 // import { Close } from "@material-ui/icons";
 import CloseIcon from "@mui/icons-material/Close";
 
-const ConfirmCommentDelete = ({
+function ConfirmCommentDelete({
   handleCommentDelete,
   setIsCommentDelete,
   commentId,
-}) => {
+}) {
   return (
     <Dialog open={true} maxWidth="sm" fullWidth>
       <DialogTitle>Confirm to delete</DialogTitle>
@@ -35,7 +35,7 @@ const ConfirmCommentDelete = ({
         </IconButton>
       </Box>
       <DialogContent>
-        <Typography>{`Are you sure yout want to delete the comment?`}</Typography>
+        <Typography>{`Are you sure you want to delete the comment?`}</Typography>
       </DialogContent>
       <DialogActions>
         <Button
@@ -55,6 +55,6 @@ const ConfirmCommentDelete = ({
       </DialogActions>
     </Dialog>
   );
-};
+}
 
 export default ConfirmCommentDelete;

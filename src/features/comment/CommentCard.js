@@ -13,7 +13,7 @@ import { fDate } from "../../utils/formatTime";
 import CommentReaction from "./CommentReaction";
 
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import apiService from "../../app/apiService";
+// import apiService from "../../app/apiService";
 import CommentEditForm from "./CommentEditForm";
 import ConfirmCommentDelete from "./ConfirmCommentDelete";
 import { useDispatch } from "react-redux";
@@ -44,7 +44,7 @@ function CommentCard({ comment }) {
     setAnchorEl(null);
   };
 
-  const handleCommentEdit = async (commentId) => {
+  const handleCommentEdit = () => {
     // console.log("edit comment");
 
     handleMoreVertIconClose();
@@ -63,23 +63,21 @@ function CommentCard({ comment }) {
   };
 
   const handleCommentDelete = async (commentId) => {
-    console.log("delete comment", commentId);
+    // console.log("delete comment", commentId);
 
-    handleMoreVertIconClose();
     setIsCommentDelete(false);
+    dispatch(deleteComment({ commentId }));
 
-    try {
-      // const response = await apiService.delete(`/comments/${commentId}`);
-      // setIsCommentDelete(false);
-      dispatch(deleteComment({ commentId }));
-      // return response.data;
-    } catch (error) {
-      // setIsCommentDelete(false);
-      console.error(error);
-    }
+    // try {
+    //   // const response = await apiService.delete(`/comments/${commentId}`);
+    //   // setIsCommentDelete(false);
+    //   dispatch(deleteComment({ commentId }));
+    //   // return response.data;
+    // } catch (error) {
+    //   // setIsCommentDelete(false);
+    //   console.error(error);
+    // }
   };
-
-  // const handleConmentEditSubmit = () => {};
 
   const menuId = "more-card-options-menu";
   const renderMoreOptions = (
@@ -102,7 +100,13 @@ function CommentCard({ comment }) {
         Edit
       </MenuItem>
 
-      <MenuItem onClick={() => setIsCommentDelete(true)} sx={{ mx: 1 }}>
+      <MenuItem
+        onClick={() => {
+          setIsCommentDelete(true);
+          handleMoreVertIconClose();
+        }}
+        sx={{ mx: 1 }}
+      >
         Delete
       </MenuItem>
     </Menu>

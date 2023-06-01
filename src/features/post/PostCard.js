@@ -18,8 +18,6 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PostReaction from "./PostReaction";
 import CommentForm from "../comment/CommentForm";
 import CommentList from "../comment/CommentList";
-import useAuth from "../../hooks/useAuth";
-import apiService from "../../app/apiService";
 
 import PostEditForm from "./PostEditForm";
 import ConfirmPostDelete from "./ConfirmPostDelete";
@@ -51,19 +49,8 @@ function PostCard({ post }) {
     setAnchorEl(null);
   };
 
-  // const handleLogout = async () => {
-  //   try {
-  //     handleMenuClose();
-  //     await logout(() => {
-  //       navigate("/login");
-  //     });
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
   // render PostForm to edit the post
-  const handlePostEdit = async (postId, content, image) => {
+  const handlePostEdit = () => {
     // console.log("edit post", postId, content, image);
     handleMoreVertIconClose();
     setIsPostEdit(true);
@@ -73,17 +60,18 @@ function PostCard({ post }) {
     // console.log("delete post", postId);
 
     setIsPostDelete(false);
-    try {
-      // handleMoreVertIconClose();
-      // const response = await apiService.delete(`/${postId}`);
-      // console.log("response", response);
+    dispatch(deletePost({ postId }));
+    // try {
+    //   // handleMoreVertIconClose();
+    //   // const response = await apiService.delete(`/${postId}`);
+    //   // console.log("response", response);
 
-      dispatch(deletePost({ postId }));
+    //   dispatch(deletePost({ postId }));
 
-      // return response.data;
-    } catch (error) {
-      console.error(error);
-    }
+    //   // return response.data;
+    // } catch (error) {
+    //   console.error(error);
+    // }
   };
 
   const menuId = "more-post-options-menu";
