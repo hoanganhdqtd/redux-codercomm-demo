@@ -45,7 +45,7 @@ function CommentCard({ comment }) {
   };
 
   const handleCommentEdit = async (commentId) => {
-    console.log("edit comment");
+    // console.log("edit comment");
 
     handleMoreVertIconClose();
 

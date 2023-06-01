@@ -64,27 +64,24 @@ function PostCard({ post }) {
 
   // render PostForm to edit the post
   const handlePostEdit = async (postId, content, image) => {
-    console.log("edit post", postId, content, image);
+    // console.log("edit post", postId, content, image);
+    handleMoreVertIconClose();
     setIsPostEdit(true);
-    try {
-      handleMoreVertIconClose();
-    } catch (error) {
-      console.error(error);
-    }
   };
 
   const handlePostDelete = async (postId) => {
-    console.log("delete post", postId);
+    // console.log("delete post", postId);
+
+    setIsPostDelete(false);
     try {
       // handleMoreVertIconClose();
       // const response = await apiService.delete(`/${postId}`);
       // console.log("response", response);
 
       dispatch(deletePost({ postId }));
-      setIsPostDelete(false);
+
       // return response.data;
     } catch (error) {
-      setIsPostDelete(false);
       console.error(error);
     }
   };

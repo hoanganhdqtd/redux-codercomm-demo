@@ -12,6 +12,7 @@ const initialState = {
   error: null,
   postsById: {},
   currentPagePosts: [],
+  totalPosts: 0,
 };
 
 const slice = createSlice({
@@ -71,6 +72,7 @@ const slice = createSlice({
         state.currentPagePosts.pop();
       state.postsById[newPost._id] = newPost;
       state.currentPagePosts.unshift(newPost._id);
+      state.totalPosts += 1;
     },
 
     sendPostReactionSuccess(state, action) {
@@ -83,7 +85,7 @@ const slice = createSlice({
     editPostSuccess(state, action) {
       state.isLoading = false;
       state.error = null;
-      console.log("action.payload", action.payload);
+      // console.log("action.payload", action.payload);
       const { _id, content, image } = action.payload;
       state.postsById[_id].content = content;
       state.postsById[_id].image = image;
@@ -92,11 +94,12 @@ const slice = createSlice({
     deletePostSuccess(state, action) {
       state.isLoading = false;
       state.error = null;
-      console.log("action.payload", action.payload);
+      // console.log("action.payload", action.payload);
       const { _id } = action.payload;
       state.currentPagePosts = state.currentPagePosts.filter(
         (postId) => postId !== _id
       );
+      state.totalPosts -= 1;
     },
   },
 });

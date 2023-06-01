@@ -62,7 +62,7 @@ function PostEditForm({ post, setIsPostEdit }) {
   // };
 
   const onSubmit = (data) => {
-    console.log("data", data);
+    // console.log("data", data);
     setIsPostEdit(false);
     dispatch(editPost({ ...data, postId: post._id })).then(() => reset());
   };

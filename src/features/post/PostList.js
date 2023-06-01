@@ -10,6 +10,7 @@ function PostList({ userId }) {
   const { currentPagePosts, postsById, isLoading, totalPosts } = useSelector(
     (state) => state.post
   );
+  const postState = useSelector((state) => state.post);
   const posts = currentPagePosts.map((postId) => postsById[postId]);
   const dispatch = useDispatch();
 
@@ -25,7 +26,7 @@ function PostList({ userId }) {
         <PostCard key={post._id} post={post} />
       ))}
       <Box sx={{ display: "flex", justifyContent: "center" }}>
-        {totalPosts ? (
+        {postState.totalPosts ? (
           <LoadingButton
             variant="outlined"
             size="small"
