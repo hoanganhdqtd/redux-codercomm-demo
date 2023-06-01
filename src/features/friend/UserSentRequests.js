@@ -8,11 +8,11 @@ import {
   Container,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers } from "./friendSlice";
+import { getUserSentRequests } from "./friendSlice";
 import UserTable from "./UserTable";
 import SearchInput from "../../components/SearchInput";
 
-function RequestsSent() {
+function UserSentRequests() {
   const [filterName, setFilterName] = useState("");
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -37,7 +37,9 @@ function RequestsSent() {
   };
 
   useEffect(() => {
-    dispatch(getUsers({ filterName, page: page + 1, limit: rowsPerPage }));
+    dispatch(
+      getUserSentRequests({ filterName, page: page + 1, limit: rowsPerPage })
+    );
   }, [filterName, page, rowsPerPage, dispatch]);
 
   return (
@@ -86,4 +88,4 @@ function RequestsSent() {
   );
 }
 
-export default RequestsSent;
+export default UserSentRequests;
