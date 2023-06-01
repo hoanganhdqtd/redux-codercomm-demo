@@ -17,9 +17,8 @@ function CommentEditForm({ commentId, setIsCommentEdit }) {
     e.preventDefault();
     dispatch(editComment({ commentId, content }));
     setContent("");
+    setIsCommentEdit(false);
   };
-
-  console.log("comment edit");
 
   return (
     <form onSubmit={handleSubmit}>
