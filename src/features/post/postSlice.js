@@ -85,8 +85,9 @@ const slice = createSlice({
     editPostSuccess(state, action) {
       state.isLoading = false;
       state.error = null;
-      // console.log("action.payload", action.payload);
+      console.log("action.payload", action.payload);
       const { _id, content, image } = action.payload;
+      console.log("Image", image);
       state.postsById[_id].content = content;
       state.postsById[_id].image = image;
     },
@@ -182,10 +183,14 @@ export const editPost =
   ({ postId, content, image }) =>
   async (dispatch) => {
     dispatch(slice.actions.startLoading());
+
+    console.log("{content, image}", { content, image });
+
     try {
+      const imageUrl = await cloudinaryUpload(image);
       const response = await apiService.put(`/posts/${postId}`, {
         content,
-        image,
+        image: imageUrl,
       });
 
       dispatch(slice.actions.editPostSuccess(response.data));
